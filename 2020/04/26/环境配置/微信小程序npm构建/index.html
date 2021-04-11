@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>微信小程序npm构建 | Silent Wittgenstein</title><meta name="keywords" content="微信小程序"><meta name="author" content="Safe Animal,sangguorui@163.com"><meta name="copyright" content="Safe Animal"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="教程基于windows系统 1.进入nodejs官网下载nodejs：nodejs官网 2.打开安装包进行安装，我这里默认安装到C:\Program Files\nodejs里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序npm构建">
+<meta property="og:url" content="http://example.com/2020/04/26/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fnpm%E6%9E%84%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Silent Wittgenstein">
+<meta property="og:description" content="教程基于windows系统 1.进入nodejs官网下载nodejs：nodejs官网 2.打开安装包进行安装，我这里默认安装到C:\Program Files\nodejs里">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png">
+<meta property="article:published_time" content="2020-04-26T03:32:01.000Z">
+<meta property="article:modified_time" content="2020-04-29T06:14:20.232Z">
+<meta property="article:author" content="Safe Animal">
+<meta property="article:tag" content="微信小程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/04/26/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fnpm%E6%9E%84%E5%BB%BA/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2020-04-29 14:14:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Silent Wittgenstein</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">微信小程序npm构建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-04-26T03:32:01.000Z" title="发表于 2020-04-26 11:32:01">2020-04-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-04-29T06:14:20.232Z" title="更新于 2020-04-29 14:14:20">2020-04-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="微信小程序npm构建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><code>教程基于windows系统</code><br>
+1.进入nodejs官网下载nodejs：<a target="_blank" rel="noopener" href="http://nodejs.cn/download/">nodejs官网</a><img src="https://img-blog.csdnimg.cn/2020041721064050.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2.打开安装包进行安装，我这里默认安装到C:\Program Files\nodejs里</p>
+<span id="more"></span>
+<p>3.<mark>接下来用管理员权限启动cmd</mark><img src="https://img-blog.csdnimg.cn/20200417210900467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>4.在cmd中执行<code>npm config set prefix &quot;C:\Program Files\nodejs\node_global&quot;</code></p>
+<p>5.执行<code>npm config set cache &quot;C:\Program Files\nodejs\node_cache&quot;</code></p>
+<p>6.设置环境变量：<code>我的电脑</code>——<code>属性</code>——<code>高级系统设置</code>——<code>环境变量</code>——<code>新建（系统变量下）</code>——输入变量名<code>NODE_PATH</code>-&gt;路径<code>C:\Program Files\nodejs\node_global\node_modules</code></p>
+<p>7.cmd输入<code>npm install express -g</code></p>
+<p>8.在cmd输<code>node</code>进入编辑模式，输入<code>require('express')</code>检测是否能正常加载模块：<br>
+<img src="https://img-blog.csdnimg.cn/20200417214117514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>9.用cmd转到小程序的目录下<code>cd C:\Users\SANG\WeChatProjects\miniprogram-8\miniprogram</code>(根据你自己的小程序<code>project.config.json</code>中的<code>miniprogramRoot</code>指示的路径来)</p>
+<p>10.执行<code>npm init</code>，完成之后一直按<kbd>回车</kbd>直到退出，一定要执行完啊！！！<br>
+<img src="https://img-blog.csdnimg.cn/20200417220113513.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+11.输入<code>npm i @vant/weapp -S --production</code><br>
+<img src="https://img-blog.csdnimg.cn/20200417214712987.png" alt="在这里插入图片描述"><br>
+12.上一步结束后，输入<code>npm init -y</code><br>
+<img src="https://img-blog.csdnimg.cn/20200417214823769.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+13.打开微信开发者平台，打开<code>详情</code>，勾选<code>使用npm模块</code><br>
+<img src="https://img-blog.csdnimg.cn/20200417212710879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>14.在<code>工具</code>菜单栏中点击<code>构建npm</code><br>
+<img src="https://img-blog.csdnimg.cn/20200417212851318.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+15.这样就大功告成了！<br>
+<img src="https://img-blog.csdnimg.cn/2020041722053894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNjc3MzE3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>
+一天开发，十天搭环境，巨真实！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:sangguorui@163.com">Safe Animal</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/04/26/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fnpm%E6%9E%84%E5%BB%BA/">http://example.com/2020/04/26/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fnpm%E6%9E%84%E5%BB%BA/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Silent Wittgenstein</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a></div><div class="post_share"><div class="social-share" data-image="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2020/04/26/JavaScript/JavaScript%E7%AC%94%E8%AE%B0-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/"><img class="prev-cover" src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">JavaScript笔记-基本语法</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Safe Animal</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">41</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/safeanimal"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/safeanimal" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/04/10/Python/%E7%88%AC%E8%99%AB/Python%E7%88%AC%E8%99%AB-requests%E6%A8%A1%E5%9D%97/" title="Python爬虫-requests模块"><img src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python爬虫-requests模块"/></a><div class="content"><a class="title" href="/2021/04/10/Python/%E7%88%AC%E8%99%AB/Python%E7%88%AC%E8%99%AB-requests%E6%A8%A1%E5%9D%97/" title="Python爬虫-requests模块">Python爬虫-requests模块</a><time datetime="2021-04-10T13:09:47.000Z" title="发表于 2021-04-10 21:09:47">2021-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/02/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Anaconda%E5%AE%89%E8%A3%85TensorFlow/" title="Anaconda安装TensorFlow"><img src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Anaconda安装TensorFlow"/></a><div class="content"><a class="title" href="/2021/04/02/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Anaconda%E5%AE%89%E8%A3%85TensorFlow/" title="Anaconda安装TensorFlow">Anaconda安装TensorFlow</a><time datetime="2021-04-02T14:10:27.000Z" title="发表于 2021-04-02 22:10:27">2021-04-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/24/PAT/PAT%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%A0%86/" title="PAT知识点-堆"><img src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PAT知识点-堆"/></a><div class="content"><a class="title" href="/2020/07/24/PAT/PAT%E7%9F%A5%E8%AF%86%E7%82%B9-%E5%A0%86/" title="PAT知识点-堆">PAT知识点-堆</a><time datetime="2020-07-24T08:02:30.000Z" title="发表于 2020-07-24 16:02:30">2020-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/24/PAT/PAT%E4%B8%AD%E5%B8%B8%E7%94%A8STL-string/" title="PAT中常用STL-string"><img src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PAT中常用STL-string"/></a><div class="content"><a class="title" href="/2020/07/24/PAT/PAT%E4%B8%AD%E5%B8%B8%E7%94%A8STL-string/" title="PAT中常用STL-string">PAT中常用STL-string</a><time datetime="2020-07-24T02:35:17.000Z" title="发表于 2020-07-24 10:35:17">2020-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/05/06/Python/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%8C%96%E6%8E%98%E5%AE%9E%E6%88%98-%E7%AC%AC4%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="Python数据分析与挖掘实战-第4章笔记"><img src="https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python数据分析与挖掘实战-第4章笔记"/></a><div class="content"><a class="title" href="/2020/05/06/Python/Python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%8C%96%E6%8E%98%E5%AE%9E%E6%88%98-%E7%AC%AC4%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="Python数据分析与挖掘实战-第4章笔记">Python数据分析与挖掘实战-第4章笔记</a><time datetime="2020-05-06T02:12:01.000Z" title="发表于 2020-05-06 10:12:01">2020-05-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://w.wallhaven.cc/full/m9/wallhaven-m93gem.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Safe Animal</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">谢谢你的光临</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
