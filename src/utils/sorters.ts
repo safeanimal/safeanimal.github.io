@@ -36,16 +36,16 @@ export class PublicationSorter {
 export class ProjectSorter {
   static byDate(projects: Project[]): Project[] {
     return [...projects].sort((a, b) => {
-      if (!a.date || !b.date) return 0;
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (!a.startDate || !b.startDate) return 0;
+      return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
     });
   }
 
   static byFeatured(projects: Project[]): Project[] {
     return [...projects].sort((a, b) => {
       if (a.featured === b.featured) {
-        if (!a.date || !b.date) return 0;
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+        if (!a.startDate || !b.startDate) return 0;
+        return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
       }
       return a.featured ? -1 : 1;
     });
