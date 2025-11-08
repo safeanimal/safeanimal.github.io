@@ -1,0 +1,149 @@
+---
+import type { Education } from '@common/index';
+import { DateFormatter } from '@utils/formatters';
+
+interface Props {
+  education: Education;
+}
+
+const { education } = Astro.props;
+---
+
+<div class="education-item">
+  <div class="education-header">
+    <div class="education-main">
+      <h3 class="degree">{education.degree}</h3>
+      <p class="institution">{education.institution}</p>
+      <p class="location">{education.location}</p>
+    </div>
+    <div class="education-meta">
+      <span class="date-range">
+        {DateFormatter.formatDateRange(education.startDate, education.endDate)}
+      </span>
+      {education.gpa && (
+        <span class="gpa">GPA: {education.gpa}</span>
+      )}
+    </div>
+  </div>
+
+  {(education.advisor || education.focus || education.description) && (
+    <div class="education-details">
+      {education.advisor && (
+        <p class="detail">
+          <strong>Advisor:</strong> {education.advisor}
+        </p>
+      )}
+      {education.focus && (
+        <p class="detail">
+          <strong>Focus:</strong> {education.focus}
+        </p>
+      )}
+      {education.description && (
+        <p class="detail">{education.description}</p>
+      )}
+    </div>
+  )}
+</div>
+
+<style>
+  .education-item {
+    padding: var(--spacing-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-normal);
+  }
+
+  .education-item:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .education-main {
+    flex: 1;
+  }
+
+  .degree {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-2);
+  }
+
+  .institution {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin: 0 0 var(--spacing-1);
+  }
+
+  .location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+
+  .education-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-2);
+    flex-shrink: 0;
+  }
+
+  .date-range {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .gpa {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    padding: var(--spacing-1) var(--spacing-3);
+    background: var(--color-primary-light);
+    border-radius: var(--radius-md);
+  }
+
+  .education-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .detail {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .detail strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .education-header {
+      flex-direction: column;
+    }
+
+    .education-meta {
+      align-items: flex-start;
+    }
+  }
+</style>
+

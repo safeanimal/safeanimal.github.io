@@ -1,0 +1,72 @@
+---
+import Navigation from '@components/Layout/Navigation.astro';
+import ThemeToggle from '@components/UI/ThemeToggle.astro';
+import { profile } from '@data/profile';
+---
+
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <a href="/" class="logo">
+        {profile.name}
+      </a>
+      <div class="header-actions">
+        <Navigation />
+        <ThemeToggle />
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+    background: var(--color-surface-transparent);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .logo {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .logo:hover {
+    color: var(--color-primary);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      height: 60px;
+    }
+
+    .logo {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
+

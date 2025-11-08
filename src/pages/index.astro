@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Profile/Hero.astro';
+import ResearchInterests from '@components/Profile/ResearchInterests.astro';
+import PublicationsList from '@components/Research/PublicationsList.astro';
+import ProjectsList from '@components/Research/ProjectsList.astro';
+import EducationItem from '@components/Profile/EducationItem.astro';
+import ExperienceItem from '@components/Profile/ExperienceItem.astro';
+import SkillsGrid from '@components/Profile/SkillsGrid.astro';
+import Section from '@components/UI/Section.astro';
+import { SEOGenerator } from '@utils/seo';
+import { profile } from '@data/profile';
+import { education } from '@data/education';
+import { experience } from '@data/experience';
+import { EducationSorter, ExperienceSorter } from '@utils/sorters';
+
+const metadata = SEOGenerator.generateMetadata(
+  profile.name,
+  `${profile.title} at ${profile.institution}. ${profile.bio.slice(0, 150)}...`,
+  {
+    keywords: [
+      'PhD student',
+      'Computer Science',
+      'Machine Learning',
+      'Research',
+      ...profile.researchInterests,
+    ],
+  }
+);
+
+const sortedEducation = EducationSorter.byDate(education);
+const sortedExperience = ExperienceSorter.byDate(experience);
+---
+
+<BaseLayout metadata={metadata}>
+  <Hero />
+
+  <Section id="research" title="Research Interests" background="variant">
+    <ResearchInterests />
+  </Section>
+
+  <Section id="publications" title="Publications" subtitle="Recent research contributions and publications">
+    <PublicationsList groupByYear={true} />
+  </Section>
+
+  <Section id="projects" title="Featured Projects" subtitle="Open-source projects and research implementations" background="variant">
+    <ProjectsList featured={true} />
+  </Section>
+
+  <Section id="experience" title="Experience">
+    <div class="experience-list">
+      {sortedExperience.map((exp) => (
+        <ExperienceItem experience={exp} />
+      ))}
+    </div>
+  </Section>
+
+  <Section id="education" title="Education" background="variant">
+    <div class="education-list">
+      {sortedEducation.map((edu) => (
+        <EducationItem education={edu} />
+      ))}
+    </div>
+  </Section>
+
+  <Section id="skills" title="Skills & Expertise">
+    <SkillsGrid />
+  </Section>
+</BaseLayout>
+
+<style>
+  .experience-list,
+  .education-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+  }
+</style>
+
+<script>
+  // Add schema.org structured data
+  import { profile } from '@data/profile';
+  
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile.name,
+    jobTitle: profile.title,
+    affiliation: {
+      '@type': 'Organization',
+      name: profile.institution,
+    },
+    email: profile.email,
+    url: window.location.origin,
+    sameAs: Object.values(profile.socialLinks).filter(Boolean),
+  });
+  document.head.appendChild(script);
+</script>
+

@@ -1,0 +1,149 @@
+---
+import type { Experience } from '@common/index';
+import { DateFormatter } from '@utils/formatters';
+
+interface Props {
+  experience: Experience;
+}
+
+const { experience } = Astro.props;
+
+const typeColors: Record<Experience['type'], string> = {
+  research: 'rgb(59, 130, 246)',
+  industry: 'rgb(16, 185, 129)',
+  teaching: 'rgb(245, 158, 11)',
+  other: 'rgb(139, 92, 246)',
+};
+---
+
+<div class="experience-item">
+  <div class="experience-header">
+    <div class="experience-main">
+      <h3 class="title">{experience.title}</h3>
+      <p class="organization">{experience.organization}</p>
+      <p class="location">{experience.location}</p>
+    </div>
+    <div class="experience-meta">
+      <span class="type-badge" style={`background: ${typeColors[experience.type]}20; color: ${typeColors[experience.type]}`}>
+        {experience.type.charAt(0).toUpperCase() + experience.type.slice(1)}
+      </span>
+      <span class="date-range">
+        {DateFormatter.formatDateRange(experience.startDate, experience.endDate)}
+      </span>
+    </div>
+  </div>
+
+  <ul class="description-list">
+    {experience.description.map((item) => (
+      <li>{item}</li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .experience-item {
+    padding: var(--spacing-5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+  }
+
+  .experience-item:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary-light);
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .experience-main {
+    flex: 1;
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-2);
+  }
+
+  .organization {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    margin: 0 0 var(--spacing-1);
+  }
+
+  .location {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+
+  .experience-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-2);
+    flex-shrink: 0;
+  }
+
+  .type-badge {
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .date-range {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .description-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .description-list li {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    padding-left: var(--spacing-5);
+    position: relative;
+  }
+
+  .description-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .experience-header {
+      flex-direction: column;
+    }
+
+    .experience-meta {
+      align-items: flex-start;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+</style>
+

@@ -1,0 +1,139 @@
+---
+import { profile } from '@data/profile';
+import SocialLinks from '@components/UI/SocialLinks.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3 class="footer-title">{profile.name}</h3>
+        <p class="footer-subtitle">{profile.title}</p>
+        <p class="footer-institution">{profile.institution}</p>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="section-title">Connect</h4>
+        <SocialLinks />
+      </div>
+
+      <div class="footer-section">
+        <h4 class="section-title">Contact</h4>
+        <a href={`mailto:${profile.email}`} class="footer-link">
+          {profile.email}
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {currentYear} {profile.name}. All rights reserved.
+      </p>
+      <p class="built-with">
+        Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-surface-variant);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--spacing-16);
+    padding: var(--spacing-12) 0 var(--spacing-6);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .footer-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .footer-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  .footer-institution {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  .section-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-2);
+  }
+
+  .footer-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    font-size: var(--font-size-sm);
+  }
+
+  .footer-link:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-6);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+  }
+
+  .copyright,
+  .built-with {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-xs);
+    margin: 0;
+  }
+
+  .built-with a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+

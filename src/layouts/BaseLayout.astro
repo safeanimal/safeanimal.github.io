@@ -1,0 +1,41 @@
+---
+import type { SEOMetadata } from '@utils/seo';
+import SEOHead from '@components/SEO/SEOHead.astro';
+import Header from '@components/Layout/Header.astro';
+import Footer from '@components/Layout/Footer.astro';
+import '@styles/global.css';
+
+interface Props {
+  metadata: SEOMetadata;
+}
+
+const { metadata } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEOHead metadata={metadata} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Theme toggle functionality
+      const initTheme = () => {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+      };
+      
+      initTheme();
+      document.addEventListener('astro:after-swap', initTheme);
+    </script>
+  </body>
+</html>
+

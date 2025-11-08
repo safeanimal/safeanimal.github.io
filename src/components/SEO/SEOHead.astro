@@ -1,0 +1,44 @@
+---
+import type { SEOMetadata } from '@utils/seo';
+
+interface Props {
+  metadata: SEOMetadata;
+}
+
+const { metadata } = Astro.props;
+const site = Astro.site?.toString() || 'https://yourusername.github.io';
+---
+
+<title>{metadata.title}</title>
+<meta name="description" content={metadata.description} />
+
+{metadata.keywords && metadata.keywords.length > 0 && (
+  <meta name="keywords" content={metadata.keywords.join(', ')} />
+)}
+
+{metadata.canonical && (
+  <link rel="canonical" href={`${site}${metadata.canonical}`} />
+)}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={metadata.ogType || 'website'} />
+{site && <meta property="og:url" content={site} />}
+<meta property="og:title" content={metadata.ogTitle || metadata.title} />
+<meta property="og:description" content={metadata.ogDescription || metadata.description} />
+{metadata.ogImage && (
+  <meta property="og:image" content={`${site}${metadata.ogImage}`} />
+)}
+
+<!-- Twitter -->
+<meta property="twitter:card" content={metadata.twitterCard || 'summary_large_image'} />
+{site && <meta property="twitter:url" content={site} />}
+<meta property="twitter:title" content={metadata.ogTitle || metadata.title} />
+<meta property="twitter:description" content={metadata.ogDescription || metadata.description} />
+{metadata.ogImage && (
+  <meta property="twitter:image" content={`${site}${metadata.ogImage}`} />
+)}
+
+<!-- Additional SEO -->
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
+

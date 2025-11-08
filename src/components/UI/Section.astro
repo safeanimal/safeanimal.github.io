@@ -1,0 +1,91 @@
+---
+interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  background?: 'default' | 'variant';
+}
+
+const { 
+  id, 
+  title, 
+  subtitle,
+  background = 'default' 
+} = Astro.props;
+---
+
+<section 
+  id={id} 
+  class={`section ${background === 'variant' ? 'section--variant' : ''}`}
+>
+  <div class="container">
+    {(title || subtitle) && (
+      <div class="section-header">
+        {title && <h2 class="section-title">{title}</h2>}
+        {subtitle && <p class="section-subtitle">{subtitle}</p>}
+      </div>
+    )}
+    <div class="section-content">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--spacing-16) 0;
+  }
+
+  .section--variant {
+    background: var(--color-surface-variant);
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-3);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .section-content {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: var(--spacing-12) 0;
+    }
+
+    .section-header {
+      margin-bottom: var(--spacing-8);
+    }
+
+    .section-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .section-subtitle {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
+

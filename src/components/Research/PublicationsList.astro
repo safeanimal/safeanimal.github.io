@@ -1,0 +1,77 @@
+---
+import { publications } from '@data/publications';
+import { PublicationSorter } from '@utils/sorters';
+import PublicationCard from '@components/Research/PublicationCard.astro';
+
+interface Props {
+  featured?: boolean;
+  groupByYear?: boolean;
+}
+
+const { featured = false, groupByYear = true } = Astro.props;
+
+let pubs = featured 
+  ? publications.filter(pub => pub.featured)
+  : publications;
+
+const sortedPubs = PublicationSorter.byYear(pubs);
+const groupedPubs = groupByYear 
+  ? PublicationSorter.groupByYear(sortedPubs)
+  : null;
+---
+
+<div class="publications-list">
+  {groupedPubs ? (
+    Array.from(groupedPubs.entries()).map(([year, yearPubs]) => (
+      <div class="year-group">
+        <h3 class="year-heading">{year}</h3>
+        <div class="publications-grid">
+          {yearPubs.map((pub) => (
+            <PublicationCard publication={pub} />
+          ))}
+        </div>
+      </div>
+    ))
+  ) : (
+    <div class="publications-grid">
+      {sortedPubs.map((pub) => (
+        <PublicationCard publication={pub} />
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .publications-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-8);
+  }
+
+  .year-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .year-heading {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+    padding-bottom: var(--spacing-2);
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .publications-grid {
+    display: grid;
+    gap: var(--spacing-5);
+  }
+
+  @media (max-width: 768px) {
+    .year-heading {
+      font-size: var(--font-size-lg);
+    }
+  }
+</style>
+

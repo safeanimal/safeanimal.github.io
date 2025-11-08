@@ -1,0 +1,43 @@
+---
+interface Props {
+  hover?: boolean;
+  padding?: 'sm' | 'md' | 'lg';
+}
+
+const { 
+  hover = false,
+  padding = 'md' 
+} = Astro.props;
+---
+
+<div class={`card ${hover ? 'card--hover' : ''} card--${padding}`}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+  }
+
+  .card--sm {
+    padding: var(--spacing-3);
+  }
+
+  .card--md {
+    padding: var(--spacing-5);
+  }
+
+  .card--lg {
+    padding: var(--spacing-6);
+  }
+
+  .card--hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-light);
+  }
+</style>
+
