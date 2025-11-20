@@ -34,6 +34,7 @@ const {
 <style>
   .section {
     padding: var(--spacing-16) 0;
+    position: relative;
   }
 
   .section--variant {
@@ -49,21 +50,25 @@ const {
   .section-header {
     text-align: center;
     margin-bottom: var(--spacing-12);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .section-title {
     font-size: var(--font-size-3xl);
+    font-family: var(--font-serif);
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0 0 var(--spacing-3);
+    letter-spacing: -0.02em;
   }
 
   .section-subtitle {
     font-size: var(--font-size-lg);
     color: var(--color-text-secondary);
     margin: 0;
-    max-width: 700px;
-    margin: 0 auto;
+    line-height: 1.6;
   }
 
   .section-content {
@@ -88,4 +93,3 @@ const {
     }
   }
 </style>
-
