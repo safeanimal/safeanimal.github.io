@@ -7,7 +7,7 @@ export const projects: Project[] = [
     "description": [
       "Proposed Recursive FST for operator learning to preserve local detail and capture long-range dependencies with a compact latent representation.",
       "Designed input-dependent spatial anchors and recursive attention over a continuous feature field. The model supports queries at arbitrary coordinates.",
-      "Lead the core method, model implementation, and experimental design. Evaluate the framework on PDE prediction and image classification."
+      "Experiments evaluate the framework on PDE prediction and image classification."
     ],
     "tags": [
       "Neural Operators",
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     "description": [
       "Proposed Hamiltonian-guided diffusion to generate physically plausible robotic trajectories across variable horizons without a simulator at inference.",
       "Formulated an energy function from Hamiltonian residuals for guided sampling. Gradient guidance and importance resampling use this energy to steer the diffusion denoising process.",
-      "Lead method design, implementation, and evaluation in MuJoCo. This ongoing project extends our ICLR 2026 ReALM-GEN Workshop paper."
+      "Evaluation uses simulated robot-arm trajectories in MuJoCo. This ongoing project extends our ICLR 2026 ReALM-GEN Workshop paper."
     ],
     "tags": [
       "Diffusion Models",

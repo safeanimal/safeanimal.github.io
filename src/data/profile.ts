@@ -6,7 +6,7 @@ export const profile: Profile = {
   "institution": "University of Illinois Chicago",
   "department": "Computer Science",
   "email": "gsang@uic.edu",
-  "bio": "I develop generative models and neural operators for learning from spatial data and generating physically plausible robotic trajectories. At UIC, I work with Prof. Pedram Rooshenas and lead projects from method design through implementation and experimental evaluation.",
+  "bio": "I work with Prof. Pedram Rooshenas at UIC. My research focuses on generative models and neural operators for learning from spatial data and generating physically plausible robotic trajectories.",
   "availability": "Seeking Summer 2027 research internships",
   "graduation": "Expected PhD graduation: 2030",
   "researchInterests": [

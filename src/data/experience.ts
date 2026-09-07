@@ -10,7 +10,7 @@ export const experience: Experience[] = [
     "type": "research",
     "description": [
       "Conduct research with Prof. Pedram Rooshenas in diffusion models, physics-informed machine learning, and neural operators.",
-      "Lead method design, PyTorch implementation, and experimental evaluation for function-space Transformers and robotic trajectory generation."
+      "Develop and evaluate function-space Transformers and models for robotic trajectory generation using PyTorch."
     ]
   },
   {
