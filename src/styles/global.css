@@ -14,7 +14,7 @@
   
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
-  --color-text-tertiary: #94a3b8;
+  --color-text-tertiary: #64748b;
   
   --color-border: #e2e8f0;
   
@@ -63,7 +63,7 @@
   --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Layout */
-  --max-width: 1100px;
+  --max-width: 1000px;
 }
 
 /* Dark Theme */
@@ -242,3 +242,8 @@ video {
   display: block;
 }
 
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}

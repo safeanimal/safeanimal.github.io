@@ -3,14 +3,14 @@ import type { Education } from "@common/index";
 export const education: Education[] = [
   {
     degree: "Ph.D. in Computer Science",
-    institution: "University of Illinois at Chicago",
+    institution: "University of Illinois Chicago",
     location: "Chicago, IL, USA",
     startDate: "2025-08",
     endDate: "Present",
     advisor: "Professor Pedram Rooshenas",
-    focus: "Generative models, Probabilistic Models, Diffusion Models",
+    gpa: "4.00/4.00",
     description:
-      "Conducting research on robust and interpretable machine learning systems.",
+      "Expected graduation: 2030. Research in diffusion models, neural operators, and robot dynamics.",
   },
   {
     degree: "M.S. in Computer Science",
@@ -29,7 +29,5 @@ export const education: Education[] = [
     startDate: "2017-09",
     endDate: "2021-07",
     gpa: "3.66/4.0",
-    description:
-      "Mastered essential knowledge in computer science and software engineering.",
   },
 ];

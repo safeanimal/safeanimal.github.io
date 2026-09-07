@@ -15,8 +15,8 @@ export interface SEOMetadata {
 }
 
 export class SEOGenerator {
-  private static readonly DEFAULT_SITE_NAME = 'Academic Portfolio';
-  private static readonly DEFAULT_IMAGE = '/images/og-image.jpg';
+  private static readonly DEFAULT_SITE_NAME = 'Machine Learning Research';
+  private static readonly DEFAULT_IMAGE = 'https://safeanimal.github.io/images/avatar.jpg';
   
   static generateTitle(pageTitle: string, siteName?: string): string {
     const site = siteName || this.DEFAULT_SITE_NAME;

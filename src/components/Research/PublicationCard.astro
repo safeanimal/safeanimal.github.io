@@ -27,7 +27,6 @@ const typeLabels: Record<Publication["type"], string> = {
         <span class={`type-badge type-badge--${publication.type}`}>
           {typeLabels[publication.type]}
         </span>
-        {publication.featured && <span class="featured-badge">Featured</span>}
       </div>
       <span class="publication-year">{publication.year}</span>
     </div>
@@ -181,7 +180,7 @@ const typeLabels: Record<Publication["type"], string> = {
 
   .type-badge--workshop {
     background: rgba(245, 158, 11, 0.1);
-    color: rgb(245, 158, 11);
+    color: #b45309;
   }
 
   .type-badge--preprint {

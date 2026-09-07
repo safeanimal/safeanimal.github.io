@@ -2,16 +2,26 @@ import type { Experience } from "@common/index";
 
 export const experience: Experience[] = [
   {
-    title: "Teaching Assistant",
-    organization: "University of Illinois at Chicago",
-    location: "Chicago, IL",
-    startDate: "2025-08",
-    endDate: "2025-12",
-    type: "teaching",
-    description: [
-      "Leading labs for Matlab course for 30+ students",
-      "Held weekly office hours and graded exams and projects",
-      "Developed supplementary course materials",
-    ],
+    "title": "Graduate Research Assistant",
+    "organization": "University of Illinois Chicago",
+    "location": "Chicago, IL",
+    "startDate": "2026-05",
+    "endDate": "Present",
+    "type": "research",
+    "description": [
+      "Conduct research with Prof. Pedram Rooshenas in diffusion models, physics-informed machine learning, and neural operators.",
+      "Lead method design, PyTorch implementation, and experimental evaluation for function-space Transformers and robotic trajectory generation."
+    ]
   },
+  {
+    "title": "Graduate Teaching Assistant",
+    "organization": "University of Illinois Chicago",
+    "location": "Chicago, IL",
+    "startDate": "2025-08",
+    "endDate": "2026-05",
+    "type": "teaching",
+    "description": [
+      "Led MATLAB labs for more than 30 students, helping students develop practical programming and problem-solving skills."
+    ]
+  }
 ];

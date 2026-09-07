@@ -25,6 +25,7 @@ export interface Publication {
 
 export interface Project {
   title: string;
+  status?: string;
   description: string[];
   tags: string[];
   image?: string;
@@ -65,6 +66,8 @@ export interface Profile {
   department: string;
   email: string;
   bio: string;
+  availability?: string;
+  graduation?: string;
   researchInterests: string[];
   socialLinks: SocialLinks;
   avatar?: string;

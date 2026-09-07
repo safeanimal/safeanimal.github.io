@@ -2,25 +2,30 @@ import type { Skill } from "@common/index";
 
 export const skills: Skill[] = [
   {
-    category: "Programming Languages",
-    items: ["Python", "C/C++", "CSS/HTML"],
+    "category": "Languages & Frameworks",
+    "items": [
+      "Python",
+      "C/C++",
+      "PyTorch",
+      "PyTorch Lightning"
+    ]
   },
   {
-    category: "Machine Learning",
-    items: ["PyTorch", "PyTorch-Lignthing"],
+    "category": "Research Tools",
+    "items": [
+      "MuJoCo",
+      "Weights & Biases",
+      "Git",
+      "Linux"
+    ]
   },
   {
-    category: "Tools & Platforms",
-    items: ["Git", "Linux", "Jupyter"],
-  },
-  {
-    category: "Areas of Expertise",
-    items: [
-      "Machine Learning",
-      "Deep Learning",
-      "Computer Vision",
-      "Generative Models",
+    "category": "Research Areas",
+    "items": [
       "Diffusion Models",
-    ],
-  },
+      "Neural Operators",
+      "Physics-Informed ML",
+      "Robot Dynamics"
+    ]
+  }
 ];

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { metadata } = Astro.props;
-const site = Astro.site?.toString() || 'https://yourusername.github.io';
+const site = Astro.site?.toString() || 'https://safeanimal.github.io/';
 ---
 
 <title>{metadata.title}</title>
@@ -17,7 +17,7 @@ const site = Astro.site?.toString() || 'https://yourusername.github.io';
 )}
 
 {metadata.canonical && (
-  <link rel="canonical" href={`${site}${metadata.canonical}`} />
+  <link rel="canonical" href={new URL(metadata.canonical, site).href} />
 )}
 
 <!-- Open Graph / Facebook -->
@@ -26,7 +26,7 @@ const site = Astro.site?.toString() || 'https://yourusername.github.io';
 <meta property="og:title" content={metadata.ogTitle || metadata.title} />
 <meta property="og:description" content={metadata.ogDescription || metadata.description} />
 {metadata.ogImage && (
-  <meta property="og:image" content={`${site}${metadata.ogImage}`} />
+  <meta property="og:image" content={new URL(metadata.ogImage, site).href} />
 )}
 
 <!-- Twitter -->
@@ -35,10 +35,9 @@ const site = Astro.site?.toString() || 'https://yourusername.github.io';
 <meta property="twitter:title" content={metadata.ogTitle || metadata.title} />
 <meta property="twitter:description" content={metadata.ogDescription || metadata.description} />
 {metadata.ogImage && (
-  <meta property="twitter:image" content={`${site}${metadata.ogImage}`} />
+  <meta property="twitter:image" content={new URL(metadata.ogImage, site).href} />
 )}
 
 <!-- Additional SEO -->
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
-

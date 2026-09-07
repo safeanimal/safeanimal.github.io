@@ -2,6 +2,16 @@ import type { Publication } from "@common/index";
 
 export const publications: Publication[] = [
   {
+    title: "Hamiltonian-Guided Diffusion Fields for Variable-Length Rigid-Arm Trajectory Generation",
+    authors: ["Guorui Sang", "Pedram Rooshenas"],
+    venue: "ICLR 2026 · ReALM-GEN Workshop",
+    year: 2026,
+    type: "workshop",
+    featured: true,
+    abstract: "Combines diffusion probabilistic fields with Hamiltonian guidance for variable-length robotic trajectory generation.",
+    paper: "https://openreview.net/forum?id=MJl3bBLMM3",
+  },
+  {
     title:
       "ConSinger: Efficient High-Fidelity Singing Voice Generation with Minimal Steps",
     authors: ["Yulin Song", "Guorui Sang", "Jing Yu", "Chuangbai Xiao"],
@@ -12,12 +22,12 @@ export const publications: Publication[] = [
     authorNote: "* Equal contribution",
     venue:
       "IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)",
-    year: 2024,
+    year: 2025,
     type: "conference",
     featured: true,
     abstract:
-      "We present a novel approach to solving X problem in machine learning...",
-    paper: "https://keylxiao.github.io/consinger",
+      "A consistency model for efficient singing voice synthesis. I co-developed the method and designed a quality scorer to select the denoising starting point.",
+    website: "https://keylxiao.github.io/consinger",
     arxiv: "https://arxiv.org/abs/2410.15342",
   },
   {
