@@ -39,7 +39,9 @@ export const publications: Publication[] = [
     type: "book",
     website: "https://wqbook.wqxuetang.com/book/3248109",
     yourPenName: "宇航",
-    note: "Published under the pen name '宇航'",
+    note: "Co-author and associate editor under the pen name Yuhang (宇航).",
+    abstract:
+      "Contributed to the data structures section, organizing core theories and concepts alongside 300 problems and solutions across approximately 170 pages.",
   },
   // Add more publications here
 ];

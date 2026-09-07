@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Hero from '@components/Profile/Hero.astro';
 import PublicationsList from '@components/Research/PublicationsList.astro';
+import PublicationCard from '@components/Research/PublicationCard.astro';
 import ProjectsList from '@components/Research/ProjectsList.astro';
 import EducationItem from '@components/Profile/EducationItem.astro';
 import ExperienceItem from '@components/Profile/ExperienceItem.astro';
@@ -11,6 +12,7 @@ import { SEOGenerator } from '@utils/seo';
 import { profile } from '@data/profile';
 import { education } from '@data/education';
 import { experience } from '@data/experience';
+import { publications } from '@data/publications';
 import { EducationSorter, ExperienceSorter } from '@utils/sorters';
 
 const metadata = SEOGenerator.generateMetadata(
@@ -32,6 +34,7 @@ const metadata = SEOGenerator.generateMetadata(
 
 const sortedEducation = EducationSorter.byDate(education);
 const sortedExperience = ExperienceSorter.byDate(experience);
+const books = publications.filter(publication => publication.type === 'book');
 ---
 
 <BaseLayout metadata={metadata}>
@@ -64,6 +67,12 @@ const sortedExperience = ExperienceSorter.byDate(experience);
   <Section id="skills" title="Skills & Expertise">
     <SkillsGrid />
   </Section>
+
+  {books.length > 0 && (
+    <Section id="books" title="Books" background="variant">
+      {books.map(book => <PublicationCard publication={book} />)}
+    </Section>
+  )}
 </BaseLayout>
 
 <style>
